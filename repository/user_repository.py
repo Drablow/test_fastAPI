@@ -1,5 +1,6 @@
 from sqlalchemy import select
-from database import new_session, UserOrm
+from database import new_session
+from models import UserOrm
 from schemas import SUserCreate, SUser
 
 

@@ -1,5 +1,5 @@
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import DeclarativeBase
 
 
 engine = create_async_engine(
@@ -11,22 +11,6 @@ new_session = async_sessionmaker(engine, expire_on_commit=False)
 
 class Model(DeclarativeBase):
     pass
-
-
-class TaskOrm(Model):
-    __tablename__ = "tasks"
-
-    id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str]
-    description: Mapped[str | None]
-
-
-class UserOrm(Model):
-    __tablename__ = "users"
-
-    id: Mapped[int] = mapped_column(primary_key=True, index=True)
-    name: Mapped[str] = mapped_column(nullable=False)
-    tg_id: Mapped[int] = mapped_column(unique=True, nullable=False)
 
 
 async def create_tables():
