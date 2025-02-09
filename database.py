@@ -21,6 +21,14 @@ class TaskOrm(Model):
     description: Mapped[str | None]
 
 
+class UserOrm(Model):
+    __tablename__ = "users"
+
+    id: Mapped[int] = mapped_column(primary_key=True, index=True)
+    name: Mapped[str] = mapped_column(nullable=False)
+    tg_id: Mapped[int] = mapped_column(unique=True, nullable=False)
+
+
 async def create_tables():
     async with engine.begin() as conn:
         await conn.run_sync(Model.metadata.create_all)
