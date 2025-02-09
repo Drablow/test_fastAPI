@@ -27,6 +27,7 @@ class SUserCreate(BaseModel):
 class SUser(SUserCreate):
     id: int
 
+    model_config = ConfigDict(from_attributes=True)
 
 # возвращает id созданного пользователя.
 class SUserId(BaseModel):
